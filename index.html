@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algari | Portafolio</title>
+    <!-- Font Awesome 6 (iconos) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background 0.3s ease, color 0.2s ease;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Poppins', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: #f0f0f0;
+        }
+
+        /* Modo claro/oscuro */
+        body.dark {
+            --bg-primary: #0f0a1a;
+            --bg-secondary: #1a122b;
+            --gradient-1: #131029;
+            --gradient-2: #5647a8;
+            --text: #e0e0e0;
+            --card-bg: rgba(30, 20, 50, 0.7);
+            --border: #5647a8;
+        }
+
+        body.light {
+            --bg-primary: #f5f3ff;
+            --bg-secondary: #edeaff;
+            --gradient-1: #5647a8;
+            --gradient-2: #8a7bdb;
+            --text: #1a1a2e;
+            --card-bg: rgba(255, 255, 255, 0.85);
+            --border: #8a7bdb;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
+            background-attachment: fixed;
+            color: var(--text);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.5rem;
+        }
+
+        /* Header / perfil */
+        .profile {
+            text-align: center;
+            padding: 2rem 1rem;
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border-radius: 40px;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        .avatar {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 1.5rem;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #131029, #5647a8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border: 4px solid #fff;
+            box-shadow: 0 0 0 4px var(--border);
+        }
+
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Placeholder mientras no pongas foto */
+        .avatar-placeholder {
+            font-size: 3rem;
+            color: white;
+            text-shadow: 2px 2px 0 #00000055;
+        }
+
+        h1 {
+            font-size: 3rem;
+            background: linear-gradient(to right, #fff, #c5b4ff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .title {
+            font-size: 1.3rem;
+            color: #d9d0ff;
+            margin-bottom: 1rem;
+        }
+
+        .bio {
+            max-width: 700px;
+            margin: 1rem auto;
+            font-size: 1.05rem;
+        }
+
+        .extra-text {
+            background: rgba(86, 71, 168, 0.3);
+            display: inline-block;
+            padding: 0.4rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+
+        /* Botón modo */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 10px 15px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            z-index: 100;
+            backdrop-filter: blur(8px);
+            color: var(--text);
+        }
+
+        /* Secciones */
+        section {
+            background: var(--card-bg);
+            backdrop-filter: blur(8px);
+            border-radius: 30px;
+            padding: 1.8rem;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border);
+        }
+
+        h2 {
+            font-size: 1.9rem;
+            margin-bottom: 1.5rem;
+            border-left: 5px solid #a88eff;
+            padding-left: 1rem;
+        }
+
+        /* Habilidades */
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .skill-tag {
+            background: linear-gradient(135deg, #131029, #3b2e6b);
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-weight: 500;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        /* Proyectos */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .project-card {
+            background: rgba(0,0,0,0.3);
+            border-radius: 24px;
+            padding: 1.2rem;
+            border: 1px solid var(--border);
+            transition: transform 0.2s;
+        }
+        .project-card:hover { transform: translateY(-5px); background: rgba(0,0,0,0.5);}
+        body.light .project-card:hover { background: rgba(0,0,0,0.05);}
+
+        .project-img {
+            width: 100%;
+            height: 140px;
+            background: linear-gradient(145deg, #2a1e55, #4a3a8c);
+            border-radius: 20px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2.5rem;
+        }
+        /* Para tus imágenes reales, reemplaza el div por <img> */
+        .project-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+        }
+
+        h3 { margin-bottom: 0.5rem; }
+
+        /* Experiencia / trabajo */
+        .job-item {
+            margin-bottom: 1.2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px dashed var(--border);
+        }
+
+        /* Contacto */
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+        .contact-item {
+            background: rgba(0,0,0,0.3);
+            padding: 10px 20px;
+            border-radius: 50px;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.1rem;
+        }
+        .contact-item i { font-size: 1.4rem; color: #b5a6ff; }
+
+        .social-icons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+        .social-icons a {
+            color: var(--text);
+            font-size: 2rem;
+            transition: 0.2s;
+            opacity: 0.8;
+        }
+        .social-icons a:hover { opacity: 1; transform: scale(1.1); color: #b19eff;}
+
+        footer {
+            text-align: center;
+            padding: 2rem 0 1rem;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 700px) {
+            h1 { font-size: 2rem; }
+            .container { padding: 1rem; }
+            .contact-item { font-size: 0.9rem; flex-wrap: wrap; }
+        }
+    </style>
+</head>
+<body class="dark">
+    <button class="theme-toggle" id="themeToggle">🌙 Modo claro</button>
+
+    <div class="container">
+        <!-- Perfil -->
+        <div class="profile">
+            <div class="avatar" id="avatarContainer">
+                <!-- Aquí puedes poner tu foto. Reemplaza la línea de abajo por tu imagen -->
+                <div class="avatar-placeholder">
+                    <i class="fas fa-user-astronaut"></i>
+                </div>
+                <!-- DESCOMENTA Y USA ESTO CUANDO TENGAS FOTO:
+                <img src="tu_foto.jpg" alt="Algari">
+                -->
+            </div>
+            <h1>algari</h1>
+            <div class="title">💻 Programador profesional · Proveedor · Investigador</div>
+            <div class="bio">
+                Soy programador durante 9 años, de pequeño solo hacía bots de Discord y servidores de Minecraft como novato, 
+                pero actualmente sé hacer esas dos cosas profesionalmente y en mente. Me encanta investigar y ayudar, 
+                soy developer en 14 servidores, la mayoría son de MINECRAFT.
+            </div>
+            <div class="extra-text">
+                🔥 Apasionado por la informática | Proveedor de confianza | Developer en +14 servidores 🔥
+            </div>
+        </div>
+
+        <!-- Habilidades -->
+        <section>
+            <h2><i class="fas fa-cogs"></i> Habilidades</h2>
+            <div class="skills-grid">
+                <span class="skill-tag">🐍 Python profesional</span>
+                <span class="skill-tag">🎨 Diseñador gráfico (novato)</span>
+                <span class="skill-tag">📄 HTML muy profesional</span>
+                <span class="skill-tag">🛡️ Ciberseguridad profesional</span>
+                <span class="skill-tag">🔧 TypeScript (aprendiendo)</span>
+                <span class="skill-tag">🧩 Lua (novato)</span>
+                <span class="skill-tag">💎 Pawno (aprendiendo)</span>
+                <span class="skill-tag">🧱 Scratch profesional</span>
+                <span class="skill-tag">📦 Proveedor experto</span>
+                <span class="skill-tag">🔬 Investigador profesional</span>
+            </div>
+        </section>
+
+        <!-- Proyectos -->
+        <section>
+            <h2><i class="fas fa-rocket"></i> Proyectos destacados</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-img">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h3>TreeHosting</h3>
+                    <p>Hosting de Minecraft, juegos y webs. Rendimiento y estabilidad.</p>
+                </div>
+                <div class="project-card">
+                    <div class="project-img">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <h3>ZumbaosRoleplay</h3>
+                    <p>FiveM - Experiencias únicas de rol con sistemas avanzados.</p>
+                </div>
+                <div class="project-card">
+                    <div class="project-img">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <h3>NyxoriaStudios</h3>
+                    <p>Desarrollo de juegos en Roblox Studio.</p>
+                </div>
+                <div class="project-card">
+                    <div class="project-img">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>SecureMC</h3>
+                    <p>El mejor plugin de seguridad para tu servidor de Minecraft.</p>
+                </div>
+            </div>
+            <p style="margin-top: 12px; text-align:center; opacity:0.8;"><i class="fas fa-code-branch"></i> +10 proyectos más en activo.</p>
+        </section>
+
+        <!-- Experiencia laboral -->
+        <section>
+            <h2><i class="fas fa-briefcase"></i> Experiencia</h2>
+            <div class="job-item">
+                <strong>👨‍💻 Developer freelance</strong> — 14 servidores Minecraft y FiveM<br>
+                <small>Desarrollo de plugins, bots, sistemas de seguridad y optimización.</small>
+            </div>
+            <div class="job-item">
+                <strong>🏢 Proveedor técnico</strong> — Asesoría y suministro de soluciones informáticas a múltiples clientes.<br>
+                <small>Gestión de hosting, automatización y ciberseguridad.</small>
+            </div>
+            <div class="job-item">
+                <strong>⚡ Próximamente:</strong> ENDESA<br>
+                <small>Preparándose para nuevas oportunidades en el sector energético-tecnológico.</small>
+            </div>
+        </section>
+
+        <!-- Contacto -->
+        <section>
+            <h2><i class="fas fa-envelope"></i> Contacto</h2>
+            <div class="contact-info">
+                <div class="contact-item"><i class="fab fa-whatsapp"></i> +34 617864423</div>
+                <div class="contact-item"><i class="fab fa-discord"></i> algari0985</div>
+                <div class="contact-item"><i class="fas fa-phone-alt"></i> Teléfono/WhatsApp</div>
+            </div>
+            <div class="social-icons">
+                <!-- Iconos de redes, enlaces vacíos para que los pongas tú después -->
+                <a href="#" title="LinkedIn" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="#" title="GitHub" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="#" title="Twitter" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="#" title="Behance" target="_blank"><i class="fab fa-behance"></i></a>
+            </div>
+            <p style="text-align: center; margin-top: 20px;">📧 Para proyectos: algari@dev (disponible por Discord o WhatsApp)</p>
+        </section>
+
+        <footer>
+            <p>© 2026 algari — Programador, investigador y apasionado de la informática.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Alternar modo oscuro/claro
+        const toggleBtn = document.getElementById('themeToggle');
+        const body = document.body;
+
+        function updateThemeButtonText() {
+            if (body.classList.contains('dark')) {
+                toggleBtn.innerHTML = '☀️ Modo claro';
+            } else {
+                toggleBtn.innerHTML = '🌙 Modo oscuro';
+            }
+        }
+
+        toggleBtn.addEventListener('click', () => {
+            if (body.classList.contains('dark')) {
+                body.classList.remove('dark');
+                body.classList.add('light');
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.classList.remove('light');
+                body.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+            updateThemeButtonText();
+        });
+
+        // Cargar preferencia guardada
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') {
+            body.classList.remove('dark');
+            body.classList.add('light');
+        } else {
+            body.classList.remove('light');
+            body.classList.add('dark');
+        }
+        updateThemeButtonText();
+
+        // Si quieres poner tu foto, descomenta y cambia el innerHTML del avatar
+        // Para poner imagen real, usa esto (reemplaza "ruta/a/tu/foto.jpg")
+        /*
+        const avatarContainer = document.getElementById('avatarContainer');
+        avatarContainer.innerHTML = '<img src="tu_foto.jpg" alt="Algari">';
+        */
+    </script>
+</body>
+</html>

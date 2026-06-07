@@ -82,6 +82,44 @@
             padding: 4rem 2rem;
         }
 
+        /* ================= SELECTOR DE IDIOMA INICIAL ================= */
+        .lang-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(10, 10, 15, 0.85);
+            backdrop-filter: blur(15px);
+            z-index: 99999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease, visibility 0.5s;
+        }
+        .lang-overlay.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        .lang-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius);
+            padding: 3rem;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            max-width: 90%;
+            width: 400px;
+        }
+        .lang-card h2 {
+            margin-bottom: 2rem;
+            font-size: 1.4rem;
+            color: var(--text-main);
+        }
+        .lang-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
         /* ================= ANIMACIONES GLOBALES ================= */
         .fade-up {
             opacity: 0;
@@ -122,10 +160,7 @@
             pointer-events: none;
         }
         @keyframes ripple-anim {
-            to {
-                transform: scale(4);
-                opacity: 0;
-            }
+            to { transform: scale(4); opacity: 0; }
         }
 
         /* Títulos de sección */
@@ -221,9 +256,7 @@
         }
 
         /* ================= 2. HABILIDADES ================= */
-        .skills-section {
-            margin-bottom: 5rem;
-        }
+        .skills-section { margin-bottom: 5rem; }
         .skills-grid {
             display: flex;
             flex-wrap: wrap;
@@ -242,9 +275,7 @@
             color: var(--text-main);
             transition: var(--transition);
         }
-        .chip i {
-            color: var(--text-muted);
-        }
+        .chip i { color: var(--text-muted); }
         .chip:hover {
             transform: scale(1.05);
             background: var(--glass-hover);
@@ -257,9 +288,7 @@
         }
 
         /* ================= 3. PROYECTOS ================= */
-        .projects-section {
-            margin-bottom: 5rem;
-        }
+        .projects-section { margin-bottom: 5rem; }
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -275,381 +304,236 @@
             display: flex;
             flex-direction: column;
         }
-
-        /* Efecto de brillo lateral al pasar sobre tarjetas */
         .project-card::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: -150%;
-            width: 50%;
-            height: 100%;
+            top: 0; left: -150%; width: 50%; height: 100%;
             background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.15), transparent);
             transform: skewX(-20deg);
             transition: left 0.6s ease;
             z-index: 1;
             pointer-events: none;
         }
-        .project-card:hover::before {
-            left: 150%;
-        }
-
+        .project-card:hover::before { left: 150%; }
         .project-img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
+            width: 100%; height: 180px; object-fit: cover;
             border-bottom: 1px solid var(--glass-border);
             transition: transform 0.5s ease;
         }
-        .project-card:hover .project-img {
-            transform: scale(1.03);
-        }
-        
-        .img-wrapper {
-            overflow: hidden;
-        }
-
+        .project-card:hover .project-img { transform: scale(1.03); }
+        .img-wrapper { overflow: hidden; }
         .project-content {
-            padding: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-            z-index: 2;
+            padding: 1.5rem; display: flex; flex-direction: column; flex-grow: 1; z-index: 2;
         }
-        .project-content h3 {
-            font-size: 1.25rem;
-            margin-bottom: 0.5rem;
-        }
+        .project-content h3 { font-size: 1.25rem; margin-bottom: 0.5rem; }
         .project-content p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-bottom: 1.5rem;
-            flex-grow: 1;
+            color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem; flex-grow: 1;
         }
-        .btn-project {
-            align-self: flex-start;
-            font-size: 0.9rem;
-            gap: 8px;
-        }
+        .btn-project { align-self: flex-start; font-size: 0.9rem; gap: 8px; }
 
         /* ================= 5. EXPERIENCIA ================= */
-        .experience-section {
-            margin-bottom: 5rem;
-        }
-        .exp-list {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
+        .experience-section { margin-bottom: 5rem; }
+        .exp-list { display: flex; flex-direction: column; gap: 1rem; }
         .exp-item {
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border);
-            border-radius: 12px;
-            padding: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
+            background: var(--glass-bg); backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border); border-radius: 12px;
+            padding: 1.5rem; display: flex; align-items: center; gap: 1.5rem;
             transition: transform 0.3s ease, background 0.3s ease;
         }
         .exp-item:hover {
-            transform: translateX(10px);
-            background: var(--glass-hover);
+            transform: translateX(10px); background: var(--glass-hover);
         }
         .exp-icon {
-            width: 45px;
-            height: 45px;
-            background: rgba(139, 92, 246, 0.1);
-            color: var(--primary);
-            border-radius: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 1.2rem;
-            flex-shrink: 0;
+            width: 45px; height: 45px; background: rgba(139, 92, 246, 0.1);
+            color: var(--primary); border-radius: 10px; display: flex;
+            justify-content: center; align-items: center; font-size: 1.2rem; flex-shrink: 0;
         }
-        .exp-details h4 {
-            font-size: 1.1rem;
-            margin-bottom: 0.25rem;
-        }
-        .exp-details p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
+        .exp-details h4 { font-size: 1.1rem; margin-bottom: 0.25rem; }
+        .exp-details p { color: var(--text-muted); font-size: 0.9rem; }
 
         /* ================= 6. CONTACTO ================= */
-        .contact-section {
-            margin-bottom: 3rem;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-        }
-        @media (max-width: 600px) {
-            .contact-section { grid-template-columns: 1fr; }
-        }
-        
+        .contact-section { margin-bottom: 3rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+        @media (max-width: 600px) { .contact-section { grid-template-columns: 1fr; } }
         .contact-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border);
-            border-radius: 16px;
-            padding: 2rem;
+            background: var(--glass-bg); backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border); border-radius: 16px; padding: 2rem;
         }
-        .contact-list {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
+        .contact-list { display: flex; flex-direction: column; gap: 1rem; }
         .contact-item {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--text-muted);
+            display: inline-flex; align-items: center; gap: 10px; color: var(--text-muted);
             transition: gap 0.3s ease, color 0.3s ease;
         }
-        .contact-item:hover {
-            gap: 16px;
-            color: var(--text-main);
-        }
-        .contact-item i {
-            color: var(--primary);
-            width: 20px;
-        }
+        .contact-item:hover { gap: 16px; color: var(--text-main); }
+        .contact-item i { color: var(--primary); width: 20px; }
 
         .social-icons {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1.5rem;
-            padding-top: 1.5rem;
+            display: flex; gap: 1rem; margin-top: 1.5rem; padding-top: 1.5rem;
             border-top: 1px solid var(--glass-border);
         }
         .social-icons a {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-muted);
-            transition: var(--transition);
+            width: 40px; height: 40px; border-radius: 50%; background: var(--glass-bg);
+            border: 1px solid var(--glass-border); display: flex; align-items: center;
+            justify-content: center; color: var(--text-muted); transition: var(--transition);
         }
         .social-icons a:hover {
-            background: var(--primary);
-            color: white;
-            transform: translateY(-3px);
+            background: var(--primary); color: white; transform: translateY(-3px);
         }
 
         /* ================= 7. FOOTER ================= */
         footer {
-            text-align: center;
-            padding: 2rem 0;
-            border-top: 1px solid var(--glass-border);
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            position: relative;
+            text-align: center; padding: 2rem 0; border-top: 1px solid var(--glass-border);
+            color: var(--text-muted); font-size: 0.9rem; position: relative;
         }
         .secret-text {
-            font-size: 0.55rem;
-            opacity: 0.15;
-            color: rgba(255,255,255,0.5);
-            margin-top: 1rem;
-            user-select: none;
-            cursor: default;
+            font-size: 0.55rem; opacity: 0.15; color: rgba(255,255,255,0.5);
+            margin-top: 1rem; user-select: none; cursor: default;
         }
 
         /* ================= 4. MODAL ================= */
         .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(5px);
-            z-index: 1000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-            padding: 1rem;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(5px);
+            z-index: 1000; display: flex; justify-content: center; align-items: center;
+            opacity: 0; pointer-events: none; transition: opacity 0.3s ease; padding: 1rem;
         }
-        .modal-overlay.active {
-            opacity: 1;
-            pointer-events: all;
-        }
+        .modal-overlay.active { opacity: 1; pointer-events: all; }
         .modal-content {
-            background: #111116; /* Ligeramente más claro que el fondo oscuro */
-            border: 1px solid var(--glass-border);
-            border-radius: var(--radius);
-            width: 100%;
-            max-width: 600px;
-            padding: 2.5rem;
-            position: relative;
-            transform: translateY(20px);
-            transition: transform 0.3s ease;
+            background: #111116; border: 1px solid var(--glass-border);
+            border-radius: var(--radius); width: 100%; max-width: 600px; padding: 2.5rem;
+            position: relative; transform: translateY(20px); transition: transform 0.3s ease;
             box-shadow: 0 20px 40px rgba(0,0,0,0.5);
         }
-        .modal-overlay.active .modal-content {
-            transform: translateY(0);
-        }
+        .modal-overlay.active .modal-content { transform: translateY(0); }
         .close-modal {
-            position: absolute;
-            top: 1.5rem;
-            right: 1.5rem;
-            background: transparent;
-            border: none;
-            color: var(--text-muted);
-            font-size: 1.5rem;
-            cursor: pointer;
+            position: absolute; top: 1.5rem; right: 1.5rem; background: transparent;
+            border: none; color: var(--text-muted); font-size: 1.5rem; cursor: pointer;
             transition: color 0.3s ease;
         }
-        .close-modal:hover {
-            color: var(--text-main);
-        }
+        .close-modal:hover { color: var(--text-main); }
         
-        #modal-title {
-            font-size: 1.8rem;
-            margin-bottom: 0.2rem;
-            color: var(--text-main);
-        }
-        #modal-subtitle {
-            font-size: 1rem;
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-            font-weight: 500;
-        }
-        #modal-desc {
-            color: var(--text-muted);
-            margin-bottom: 2rem;
-        }
-        #modal-desc p {
-            margin-bottom: 0.8rem;
-        }
+        #modal-title { font-size: 1.8rem; margin-bottom: 0.2rem; color: var(--text-main); }
+        #modal-subtitle { font-size: 1rem; color: var(--primary); margin-bottom: 1.5rem; font-weight: 500; }
+        #modal-desc { color: var(--text-muted); margin-bottom: 2rem; }
+        #modal-desc p { margin-bottom: 0.8rem; }
         
-        .modal-tech-title {
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 0.8rem;
-            color: var(--text-main);
-        }
-        #modal-techs {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 2rem;
-        }
+        .modal-tech-title { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.8rem; color: var(--text-main); }
+        #modal-techs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 2rem; }
         #modal-techs .tech-chip {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            padding: 0.4rem 0.8rem;
-            border-radius: 6px;
-            font-size: 0.8rem;
-            color: var(--text-muted);
+            background: var(--glass-bg); border: 1px solid var(--glass-border);
+            padding: 0.4rem 0.8rem; border-radius: 6px; font-size: 0.8rem; color: var(--text-muted);
         }
 
     </style>
 </head>
-<body>
+<body style="overflow: hidden;"> <!-- Bloqueado hasta seleccionar idioma -->
+
+    <!-- OVERLAY IDIOMA -->
+    <div id="lang-selector-overlay" class="lang-overlay">
+        <div class="lang-card">
+            <h2>
+                Select Language<br>
+                <span style="color:var(--primary); font-size:1.1rem; font-weight: 400;">Selecciona tu idioma</span>
+            </h2>
+            <div class="lang-buttons">
+                <button class="btn" onclick="chooseLanguage('en')">
+                    🇬🇧 English
+                </button>
+                <button class="btn" onclick="chooseLanguage('es')">
+                    🇪🇸 Español
+                </button>
+            </div>
+        </div>
+    </div>
 
     <main class="container">
         
         <!-- HEADER / PERFIL -->
         <header class="hero fade-up">
             <div class="avatar-container">
-                <!-- Avatar placeholder desde Unsplash -->
                 <img src="https://images.unsplash.com/photo-1549692520-acc6669e2f0c?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="algari" class="avatar">
                 <div class="badge">
                     <div class="dot"></div>
-                    disponible para proyectos
+                    <span data-i18n="badge">disponible para proyectos</span>
                 </div>
             </div>
             <h1>algari</h1>
-            <h2>Programador profesional · Proveedor IT · Investigador</h2>
-            <p>
+            <h2 data-i18n="hero-sub">Programador profesional · Proveedor IT · Investigador</h2>
+            <p data-i18n="hero-p">
                 Programador desde hace 9 años. Developer en 14 servidores, especializado en Minecraft y FiveM. Me encanta investigar y crear soluciones eficientes.
             </p>
         </header>
 
         <!-- HABILIDADES -->
         <section id="skills" class="skills-section fade-up">
-            <h3 class="section-title"><i class="fa-solid fa-layer-group"></i> Habilidades y Tecnologías</h3>
+            <h3 class="section-title"><i class="fa-solid fa-layer-group"></i> <span data-i18n="title-skills">Habilidades y Tecnologías</span></h3>
             <div class="skills-grid">
                 <div class="chip"><i class="fa-brands fa-python"></i> Python</div>
                 <div class="chip"><i class="fa-brands fa-html5"></i> HTML/CSS</div>
-                <div class="chip"><i class="fa-solid fa-shield-halved"></i> Ciberseguridad</div>
-                <div class="chip"><i class="fa-solid fa-server"></i> Proveedor</div>
-                <div class="chip"><i class="fa-solid fa-magnifying-glass"></i> Investigador</div>
+                <div class="chip"><i class="fa-solid fa-shield-halved"></i> <span data-i18n="skill-ciber">Ciberseguridad</span></div>
+                <div class="chip"><i class="fa-solid fa-server"></i> <span data-i18n="skill-prov">Proveedor</span></div>
+                <div class="chip"><i class="fa-solid fa-magnifying-glass"></i> <span data-i18n="skill-inv">Investigador</span></div>
                 
-                <div class="chip"><i class="fa-solid fa-moon"></i> Lua <span class="level">(Novato)</span></div>
-                <div class="chip"><i class="fa-brands fa-js"></i> TypeScript <span class="level">(Aprendiendo)</span></div>
-                <div class="chip"><i class="fa-solid fa-code"></i> Pawno <span class="level">(Aprendiendo)</span></div>
+                <div class="chip"><i class="fa-solid fa-moon"></i> Lua <span class="level" data-i18n="novato">(Novato)</span></div>
+                <div class="chip"><i class="fa-brands fa-js"></i> TypeScript <span class="level" data-i18n="aprendiendo">(Aprendiendo)</span></div>
+                <div class="chip"><i class="fa-solid fa-code"></i> Pawno <span class="level" data-i18n="aprendiendo">(Aprendiendo)</span></div>
                 <div class="chip"><i class="fa-solid fa-cat"></i> Scratch</div>
-                <div class="chip"><i class="fa-solid fa-palette"></i> Diseño Gráfico <span class="level">(Novato)</span></div>
+                <div class="chip"><i class="fa-solid fa-palette"></i> <span data-i18n="skill-dg">Diseño Gráfico</span> <span class="level" data-i18n="novato">(Novato)</span></div>
             </div>
         </section>
 
         <!-- PROYECTOS -->
         <section id="projects" class="projects-section">
-            <h3 class="section-title fade-up"><i class="fa-solid fa-folder-open"></i> Proyectos Destacados</h3>
+            <h3 class="section-title fade-up"><i class="fa-solid fa-folder-open"></i> <span data-i18n="title-projects">Proyectos Destacados</span></h3>
             <div class="projects-grid">
                 
-                <!-- Card 1 -->
                 <article class="project-card fade-up">
                     <div class="img-wrapper">
                         <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=80" alt="TreeHosting" class="project-img">
                     </div>
                     <div class="project-content">
                         <h3>TreeHosting</h3>
-                        <p>Infraestructura de alto rendimiento para Minecraft y alojamiento web.</p>
+                        <p data-i18n="tree-desc">Infraestructura de alto rendimiento para Minecraft y alojamiento web.</p>
                         <button class="btn btn-project" onclick="openModal('treehosting')">
-                            ver proyecto <i class="fa-solid fa-arrow-right"></i>
+                            <span data-i18n="btn-view">ver proyecto</span> <i class="fa-solid fa-arrow-right"></i>
                         </button>
                     </div>
                 </article>
 
-                <!-- Card 2 -->
                 <article class="project-card fade-up">
                     <div class="img-wrapper">
-                        <img src="https://images.unsplash.com/photo-1605806616949-1e87b487cb2a?auto=format&fit=crop&w=600&q=80" alt="ZumbaosRoleplay" class="project-img">
+                        <img src="https://cdn.discordapp.com/attachments/1495875487392596050/1509605547748626623/image.png?ex=6a264f79&is=6a24fdf9&hm=535ba5b03edb1364727438a35580e4bc480022def90a34c5443d86dd8147a3a7&" alt="ZumbaosRoleplay" class="project-img">
                     </div>
                     <div class="project-content">
                         <h3>ZumbaosRoleplay</h3>
-                        <p>Servidor inmersivo de rol en FiveM con sistemas personalizados.</p>
+                        <p data-i18n="zum-desc">Servidor inmersivo de rol en FiveM con sistemas personalizados.</p>
                         <button class="btn btn-project" onclick="openModal('zumbaosroleplay')">
-                            ver proyecto <i class="fa-solid fa-arrow-right"></i>
+                            <span data-i18n="btn-view">ver proyecto</span> <i class="fa-solid fa-arrow-right"></i>
                         </button>
                     </div>
                 </article>
 
-                <!-- Card 3 -->
                 <article class="project-card fade-up">
                     <div class="img-wrapper">
-                        <img src="https://images.unsplash.com/photo-1613632826136-1e6216447c2c?auto=format&fit=crop&w=600&q=80" alt="NyxoriaStudios" class="project-img">
+                        <img src="https://cdn.discordapp.com/attachments/1429413448604844192/1513142469452369961/ChatGPT_Image_5_jun_2026_15_14_58.png?ex=6a26a73d&is=6a2555bd&hm=d7fdd6e1bb2b1350b0203312093a6de7eb681417505a91ed0cd575d73775f789&" alt="BROKI.GG" class="project-img">
                     </div>
                     <div class="project-content">
-                        <h3>NyxoriaStudios</h3>
-                        <p>Desarrollo de mecánicas y experiencias inmersivas en Roblox Studio.</p>
+                        <h3>BROKI.GG</h3>
+                        <p data-i18n="broki-desc">Broki es una plataforma de IA conversacional 100% enfocada en videojuegos. Olvida abrir 12 pestañas de foros...</p>
                         <button class="btn btn-project" onclick="openModal('nyxoriastudios')">
-                            ver proyecto <i class="fa-solid fa-arrow-right"></i>
+                            <span data-i18n="btn-view">ver proyecto</span> <i class="fa-solid fa-arrow-right"></i>
                         </button>
                     </div>
                 </article>
 
-                <!-- Card 4 -->
                 <article class="project-card fade-up">
                     <div class="img-wrapper">
                         <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=600&q=80" alt="SecureMC" class="project-img">
                     </div>
                     <div class="project-content">
                         <h3>SecureMC</h3>
-                        <p>Solución avanzada de seguridad para redes y servidores de Minecraft.</p>
+                        <p data-i18n="sec-desc">Solución avanzada de seguridad para redes y servidores de Minecraft.</p>
                         <button class="btn btn-project" onclick="openModal('securemc')">
-                            ver proyecto <i class="fa-solid fa-arrow-right"></i>
+                            <span data-i18n="btn-view">ver proyecto</span> <i class="fa-solid fa-arrow-right"></i>
                         </button>
                     </div>
                 </article>
@@ -659,20 +543,20 @@
 
         <!-- EXPERIENCIA -->
         <section id="experience" class="experience-section fade-up">
-            <h3 class="section-title"><i class="fa-solid fa-briefcase"></i> Experiencia Laboral</h3>
+            <h3 class="section-title"><i class="fa-solid fa-briefcase"></i> <span data-i18n="title-exp">Experiencia Laboral</span></h3>
             <div class="exp-list">
                 <div class="exp-item">
                     <div class="exp-icon"><i class="fa-solid fa-code-branch"></i></div>
                     <div class="exp-details">
-                        <h4>Developer Freelance</h4>
-                        <p>14 servidores gestionados · 2020 – actualidad</p>
+                        <h4 data-i18n="exp1-title">Developer Freelance</h4>
+                        <p data-i18n="exp1-desc">14 servidores gestionados · 2020 – actualidad</p>
                     </div>
                 </div>
                 <div class="exp-item">
                     <div class="exp-icon"><i class="fa-solid fa-headset"></i></div>
                     <div class="exp-details">
-                        <h4>Proveedor IT</h4>
-                        <p>Asesoría técnica integral y optimización de recursos.</p>
+                        <h4 data-i18n="exp2-title">Proveedor IT</h4>
+                        <p data-i18n="exp2-desc">Asesoría técnica integral y optimización de recursos.</p>
                     </div>
                 </div>
             </div>
@@ -681,7 +565,7 @@
         <!-- CONTACTO -->
         <section id="contact" class="contact-section fade-up">
             <div class="contact-card">
-                <h3 class="section-title" style="margin-bottom: 1.5rem;"><i class="fa-solid fa-paper-plane"></i> Contacto</h3>
+                <h3 class="section-title" style="margin-bottom: 1.5rem;"><i class="fa-solid fa-paper-plane"></i> <span data-i18n="title-contact">Contacto</span></h3>
                 <div class="contact-list">
                     <a href="https://wa.me/34617864423" target="_blank" class="contact-item">
                         <i class="fa-brands fa-whatsapp"></i> +34 617864423
@@ -696,8 +580,8 @@
             </div>
             
             <div class="contact-card">
-                <h3 class="section-title" style="margin-bottom: 1.5rem;"><i class="fa-solid fa-hashtag"></i> Redes</h3>
-                <p style="color: var(--text-muted); font-size: 0.9rem;">Encuéntrame y sígueme en mis perfiles sociales para estar al tanto de mis proyectos e investigaciones.</p>
+                <h3 class="section-title" style="margin-bottom: 1.5rem;"><i class="fa-solid fa-hashtag"></i> <span data-i18n="title-socials">Redes</span></h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem;" data-i18n="socials-p">Encuéntrame y sígueme en mis perfiles sociales para estar al tanto de mis proyectos e investigaciones.</p>
                 <div class="social-icons">
                     <a href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
                     <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
@@ -709,8 +593,8 @@
 
         <!-- FOOTER -->
         <footer class="fade-up">
-            <p>&copy; 2024 algari. Todos los derechos reservados.</p>
-            <div class="secret-text">amo a mi novia</div>
+            <p data-i18n="footer-copy">&copy; 2024 algari. Todos los derechos reservados.</p>
+            <div class="secret-text" data-i18n="secret">amo a mi novia</div>
         </footer>
 
     </main>
@@ -719,51 +603,167 @@
     <div id="project-modal" class="modal-overlay">
         <div class="modal-content">
             <button class="close-modal" onclick="closeModal()">&times;</button>
+            
             <h2 id="modal-title">Título del Proyecto</h2>
             <div id="modal-subtitle">Subtítulo</div>
             
-            <div id="modal-desc">
-                <!-- La descripción generada dinámicamente irá aquí -->
-            </div>
+            <div id="modal-desc"></div>
             
-            <div class="modal-tech-title">Tecnologías Usadas</div>
-            <div id="modal-techs">
-                <!-- Chips dinámicos -->
-            </div>
+            <div class="modal-tech-title" data-i18n="modal-tech">Tecnologías Usadas</div>
+            <div id="modal-techs"></div>
             
-            <button class="btn" style="width: 100%;" onclick="closeModal()">
-                visitar proyecto <i class="fa-solid fa-arrow-right" style="margin-left:8px;"></i>
-            </button>
+            <a id="modal-link" href="#" target="_blank" class="btn" style="width: 100%; box-sizing: border-box; text-decoration: none;">
+                <span data-i18n="modal-visit">visitar proyecto</span> <i class="fa-solid fa-arrow-right" style="margin-left:8px;"></i>
+            </a>
         </div>
     </div>
 
     <!-- SCRIPT DE INTERACTIVIDAD Y DATOS -->
     <script>
+        // ================= SISTEMA DE IDIOMAS =================
+        const translations = {
+            es: {
+                "badge": "disponible para proyectos",
+                "hero-sub": "Programador profesional · Proveedor IT · Investigador",
+                "hero-p": "Programador desde hace 9 años. Developer en 14 servidores, especializado en Minecraft y FiveM. Me encanta investigar y crear soluciones eficientes.",
+                "title-skills": "Habilidades y Tecnologías",
+                "skill-ciber": "Ciberseguridad",
+                "skill-prov": "Proveedor",
+                "skill-inv": "Investigador",
+                "skill-dg": "Diseño Gráfico",
+                "novato": "(Novato)",
+                "aprendiendo": "(Aprendiendo)",
+                "title-projects": "Proyectos Destacados",
+                "btn-view": "ver proyecto",
+                "tree-desc": "Infraestructura de alto rendimiento para Minecraft y alojamiento web.",
+                "zum-desc": "Servidor inmersivo de rol en FiveM con sistemas personalizados.",
+                "broki-desc": "Broki es una plataforma de IA conversacional 100% enfocada en videojuegos. Olvida abrir 12 pestañas de foros...",
+                "sec-desc": "Solución avanzada de seguridad para redes y servidores de Minecraft.",
+                "title-exp": "Experiencia Laboral",
+                "exp1-title": "Developer Freelance",
+                "exp1-desc": "14 servidores gestionados · 2020 – actualidad",
+                "exp2-title": "Proveedor IT",
+                "exp2-desc": "Asesoría técnica integral y optimización de recursos.",
+                "title-contact": "Contacto",
+                "title-socials": "Redes",
+                "socials-p": "Encuéntrame y sígueme en mis perfiles sociales para estar al tanto de mis proyectos e investigaciones.",
+                "footer-copy": "© 2024 algari. Todos los derechos reservados.",
+                "secret": "amo a mi novia",
+                "modal-tech": "Tecnologías Usadas",
+                "modal-visit": "visitar proyecto"
+            },
+            en: {
+                "badge": "available for projects",
+                "hero-sub": "Professional Developer · IT Provider · Researcher",
+                "hero-p": "Programmer for 9 years. Developer across 14 servers, specialized in Minecraft and FiveM. I love researching and creating efficient solutions.",
+                "title-skills": "Skills & Technologies",
+                "skill-ciber": "Cybersecurity",
+                "skill-prov": "IT Provider",
+                "skill-inv": "Researcher",
+                "skill-dg": "Graphic Design",
+                "novato": "(Novice)",
+                "aprendiendo": "(Learning)",
+                "title-projects": "Featured Projects",
+                "btn-view": "view project",
+                "tree-desc": "High-performance infrastructure for Minecraft and web hosting.",
+                "zum-desc": "Immersive roleplay server in FiveM with custom systems.",
+                "broki-desc": "Broki is a conversational AI platform 100% focused on video games. Forget opening 12 forum tabs...",
+                "sec-desc": "Advanced security solution for Minecraft networks and servers.",
+                "title-exp": "Work Experience",
+                "exp1-title": "Freelance Developer",
+                "exp1-desc": "14 managed servers · 2020 – present",
+                "exp2-title": "IT Provider",
+                "exp2-desc": "Comprehensive technical advice and resource optimization.",
+                "title-contact": "Contact",
+                "title-socials": "Socials",
+                "socials-p": "Find and follow me on my social profiles to stay updated on my projects and research.",
+                "footer-copy": "© 2024 algari. All rights reserved.",
+                "secret": "i love my girlfriend",
+                "modal-tech": "Technologies Used",
+                "modal-visit": "visit project"
+            }
+        };
+
+        let currentLang = 'es'; // Por defecto
+
+        function chooseLanguage(lang) {
+            currentLang = lang;
+            
+            // Ocultar overlay y permitir scroll
+            const overlay = document.getElementById('lang-selector-overlay');
+            overlay.classList.add('hidden');
+            document.body.style.overflow = 'auto'; 
+            
+            // Reemplazar los textos usando el atributo data-i18n
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
+            });
+        }
+
         // ================= BASE DE DATOS DE PROYECTOS =================
         const projectsData = {
             treehosting: {
-                title: "TreeHosting",
-                subtitle: "Hosting de servidores y servicios web",
-                desc: "Infraestructura de alto rendimiento especializada en servidores de Minecraft, otros juegos multijugador y alojamiento web.\n\nOfrecemos baja latencia, protección DDoS avanzada y un panel de control intuitivo optimizado para comunidades gaming.",
-                techs: ["Linux", "Docker", "Pterodactyl", "BASH", "Redes"]
+                es: {
+                    title: "TreeHosting",
+                    subtitle: "Hosting de servidores y servicios web",
+                    desc: "Infraestructura de alto rendimiento especializada en servidores de Minecraft, otros juegos multijugador y alojamiento web.\n\nOfrecemos baja latencia, protección DDoS avanzada y un panel de control intuitivo optimizado para comunidades gaming.",
+                    techs: ["Linux", "Docker", "Pterodactyl", "BASH", "Redes"]
+                },
+                en: {
+                    title: "TreeHosting",
+                    subtitle: "Server and web services hosting",
+                    desc: "High-performance infrastructure specialized in Minecraft servers, other multiplayer games, and web hosting.\n\nWe offer low latency, advanced DDoS protection, and an intuitive control panel optimized for gaming communities.",
+                    techs: ["Linux", "Docker", "Pterodactyl", "BASH", "Networking"]
+                },
+                link: "https://www.treemc.host/"
             },
             zumbaosroleplay: {
-                title: "ZumbaosRoleplay",
-                subtitle: "Servidor de Roleplay en FiveM",
-                desc: "Uno de los servidores de rol más inmersivos desarrollados en la plataforma FiveM.\n\nCuenta con sistemas de economía realista, trabajos personalizados, mapeados exclusivos y una optimización extrema en la carga de scripts para garantizar la mejor experiencia de usuario.",
-                techs: ["Lua", "MySQL", "FiveM API", "JavaScript"]
+                es: {
+                    title: "ZumbaosRoleplay",
+                    subtitle: "Servidor de Roleplay en FiveM",
+                    desc: "Uno de los servidores de rol más inmersivos desarrollados en la plataforma FiveM.\n\nCuenta con sistemas de economía realista, trabajos personalizados, mapeados exclusivos y una optimización extrema en la carga de scripts para garantizar la mejor experiencia de usuario.",
+                    techs: ["Lua", "MySQL", "FiveM API", "JavaScript"]
+                },
+                en: {
+                    title: "ZumbaosRoleplay",
+                    subtitle: "FiveM Roleplay Server",
+                    desc: "One of the most immersive roleplay servers developed on the FiveM platform.\n\nIt features realistic economy systems, custom jobs, exclusive mapping, and extreme optimization in script loading to guarantee the best user experience.",
+                    techs: ["Lua", "MySQL", "FiveM API", "JavaScript"]
+                },
+                link: "https://discord.gg/5rxC24KkvX"
             },
             nyxoriastudios: {
-                title: "NyxoriaStudios",
-                subtitle: "Experiencias inmersivas en Roblox",
-                desc: "Estudio de desarrollo enfocado en crear experiencias interactivas y juegos dentro del metaverso de Roblox.\n\nElaboramos desde el diseño de mecánicas y monetización, hasta el modelado 3D y la programación de sistemas complejos del lado del servidor.",
-                techs: ["Roblox Studio", "Luau", "Modelado 3D", "Game Design"]
+                es: {
+                    title: "BROKI.GG",
+                    subtitle: "Lo mejor de la IA gaming",
+                    desc: "Broki es una plataforma de IA conversacional 100% enfocada en videojuegos. Olvida abrir 12 pestañas de foros, wikis y vídeos de YouTube cada vez que te atascas en una build, una receta, un comando o una mecánica. Le preguntas, te responde — al instante, en tu idioma, con el contexto del juego que estás jugando.",
+                    techs: ["AI", "Gaming", "Soluciones", "1#"]
+                },
+                en: {
+                    title: "BROKI.GG",
+                    subtitle: "The best in gaming AI",
+                    desc: "Broki is a conversational AI platform 100% focused on video games. Forget opening 12 forum tabs, wikis, and YouTube videos every time you get stuck on a build, recipe, command, or mechanic. You ask, it answers — instantly, in your language, with the context of the game you're playing.",
+                    techs: ["AI", "Gaming", "Solutions", "1#"]
+                },
+                link: "https://broki.gg/"
             },
             securemc: {
-                title: "SecureMC",
-                subtitle: "Plugin de Seguridad Avanzada",
-                desc: "Solución integral de seguridad para redes de Minecraft (Spigot/Paper).\n\nIncluye bloqueo de exploits conocidos, sistema de autenticación de doble factor, mitigación anti-bot y prevención activa contra ataques mediante inyección de paquetes maliciosos.",
-                techs: ["Java", "Spigot API", "Ciberseguridad", "BungeeCord"]
+                es: {
+                    title: "SecureMC",
+                    subtitle: "Plugin de Seguridad Avanzada",
+                    desc: "Solución integral de seguridad para redes de Minecraft (Spigot/Paper).\n\nIncluye bloqueo de exploits conocidos, sistema de autenticación de doble factor, mitigación anti-bot y prevención activa contra ataques mediante inyección de paquetes maliciosos.",
+                    techs: ["Java", "Spigot API", "Ciberseguridad", "BungeeCord"]
+                },
+                en: {
+                    title: "SecureMC",
+                    subtitle: "Advanced Security Plugin",
+                    desc: "Comprehensive security solution for Minecraft networks (Spigot/Paper).\n\nIncludes blocking of known exploits, two-factor authentication system, anti-bot mitigation, and active prevention against malicious packet injection attacks.",
+                    techs: ["Java", "Spigot API", "Cybersecurity", "BungeeCord"]
+                },
+                link: "https://discord.gg/wKmH8bkneP"
             }
         };
 
@@ -773,45 +773,42 @@
         const modalSubtitle = document.getElementById('modal-subtitle');
         const modalDesc = document.getElementById('modal-desc');
         const modalTechs = document.getElementById('modal-techs');
+        const modalLink = document.getElementById('modal-link');
 
         function openModal(projectId) {
             const data = projectsData[projectId];
             if (!data) return;
 
-            // Inyectar datos
-            modalTitle.textContent = data.title;
-            modalSubtitle.textContent = data.subtitle;
+            const langData = data[currentLang]; // Cargar info según el idioma elegido
+
+            modalTitle.textContent = langData.title;
+            modalSubtitle.textContent = langData.subtitle;
             
-            // Reemplazar saltos de línea por párrafos
-            modalDesc.innerHTML = data.desc.split('\n\n').map(p => `<p>${p}</p>`).join('');
+            modalDesc.innerHTML = langData.desc.split('\n\n').map(p => `<p>${p}</p>`).join('');
             
-            // Limpiar y crear chips de tecnologías
             modalTechs.innerHTML = '';
-            data.techs.forEach(tech => {
+            langData.techs.forEach(tech => {
                 const span = document.createElement('span');
                 span.className = 'tech-chip';
                 span.textContent = tech;
                 modalTechs.appendChild(span);
             });
 
-            // Mostrar modal
+            modalLink.href = data.link;
+
             modal.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Evitar scroll de fondo
+            document.body.style.overflow = 'hidden'; 
         }
 
         function closeModal() {
             modal.classList.remove('active');
-            document.body.style.overflow = 'auto'; // Restaurar scroll
+            document.body.style.overflow = 'auto';
         }
 
-        // Cerrar modal clickeando fuera del contenido
         modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                closeModal();
-            }
+            if (e.target === modal) closeModal();
         });
 
-        // Cerrar modal con la tecla ESC
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && modal.classList.contains('active')) {
                 closeModal();
@@ -821,7 +818,6 @@
         // ================= EFECTO RIPPLE PARA BOTONES =================
         function createRipple(event) {
             const button = event.currentTarget;
-            
             const circle = document.createElement("span");
             const diameter = Math.max(button.clientWidth, button.clientHeight);
             const radius = diameter / 2;
@@ -832,9 +828,7 @@
             circle.classList.add("ripple");
 
             const ripple = button.getElementsByClassName("ripple")[0];
-            if (ripple) {
-                ripple.remove();
-            }
+            if (ripple) ripple.remove();
 
             button.appendChild(circle);
         }
@@ -855,7 +849,7 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
-                    observer.unobserve(entry.target); // Solo animar la primera vez
+                    observer.unobserve(entry.target);
                 }
             });
         }, observerOptions);
